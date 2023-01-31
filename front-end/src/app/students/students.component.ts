@@ -25,15 +25,10 @@ export class StudentsComponent implements OnInit {
   }
 
   studentSubmit(){
-    console.log(this.userForm.get('dateOfBirth')?.value);
-    const age = Math.floor((Date.now() - new Date(this.userForm.get('dateOfBirth')?.value).getTime()) / 3.15576e+10)
-    console.log(age);
     if (this.userForm.valid) {
-      console.log(this.userForm.value);
       const age = Math.floor((Date.now() - new Date(this.userForm.get('dateOfBirth')?.value).getTime()) / 3.15576e+10)
       if (age >= 10) {
-        this.service.createData(this.userForm.value).subscribe((res) =>{
-          console.log(res, 'res===');
+        this.service.createStudentData(this.userForm.value).subscribe((res) =>{
           this.userForm.reset();
           this.getAllData();
           this.successmsg =res.message;
@@ -47,8 +42,7 @@ export class StudentsComponent implements OnInit {
   }
 
   getAllData(){
-    this.service.getAllData().subscribe((res) => {
-      console.log(res, "res");
+    this.service.getAllStudentData().subscribe((res) => {
       this.readData = res.data;
     })
   }

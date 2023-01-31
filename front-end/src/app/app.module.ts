@@ -7,11 +7,15 @@ import { StudentsComponent } from './students/students.component';
 import { HttpClientModule} from '@angular/common/http';
 import { ApiserviceService } from './apiservice.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CoursesComponent } from './courses/courses.component';
+import { ResultComponent } from './result/result.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    StudentsComponent
+    StudentsComponent,
+    CoursesComponent,
+    ResultComponent
   ],
   imports: [
     BrowserModule,

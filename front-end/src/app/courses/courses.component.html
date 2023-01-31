@@ -1,6 +1,5 @@
 <div class="container mt-5">
-    <h3>Students Page</h3>
-
+    <h3>Courses Page</h3>
     <!-- show errormsg -->
     <div *ngIf="errormsg" class="alert alert-warning alert-dismissible fade show" role="alert">
         <strong>{{errormsg}}</strong>
@@ -13,19 +12,11 @@
 
     <form [formGroup]="userForm">
         <div class="col-lg-4 mt-2">
-            <input type="text" class="form-control" formControlName="firstName" placeholder="Enter First Name">
+            <input type="text" class="form-control" formControlName="courseName" placeholder="Enter Course Name">
         </div>
 
         <div class="col-lg-4 mt-2">
-            <input type="email" class="form-control" formControlName="familyName" placeholder="Enter Family Name">
-        </div>
-        
-        <div class="col-lg-4 mt-2">
-            <input type="date" class="form-control" formControlName="dateOfBirth" placeholder="Enter Date of Birth">
-        </div>
-
-        <div class="col-lg-4 mt-2">
-            <button class="btn btn-primary btn-lg" (click)="studentSubmit()">Create</button>
+            <button class="btn btn-primary btn-lg" (click)="courseSubmit()">Create</button>
         </div>
     </form>
 </div>
@@ -35,17 +26,13 @@
         <thead>
         <tr>
             <th scope="col">Id</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Family Name</th>
-            <th scope="col">Date of Birth</th>
+            <th scope="col">Course Name</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor = 'let data of readData'>
             <th scope="row">{{data.id}}</th>
-            <td>{{data.firstName}}</td>
-            <td>{{data.familyName}}</td>
-            <td>{{data.DateOfBirth.split('T')[0]}}</td>
+            <td>{{data.courseName}}</td>
         </tr>
         </tbody>
     </table>

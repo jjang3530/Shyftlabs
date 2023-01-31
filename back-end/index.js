@@ -40,7 +40,6 @@ app.get('/students',(req,res)=>{
 
 //create a student data
 app.post('/students',(req,res)=>{
-    console.log(req.body, 'createdata'); //delete
     let firstname = req.body.firstName;
     let familyname = req.body.familyName;
     let dob = req.body.dateOfBirth;
@@ -49,9 +48,70 @@ app.post('/students',(req,res)=>{
         if(err){
             console.log(err);
         }
-        console.log(result, 'result'); //delete
         res.send({
             message: 'student created'
+        })
+    });
+});
+
+//get all Courses
+app.get('/courses',(req,res)=>{
+    let qr = `select * from courses`;
+    db.query(qr,(err,result)=>{
+        if(err){
+            console.log(err,'errs');
+        }
+        if(result.length>0){
+            res.send({
+                message: 'All courses data',
+                data:result
+            });
+        }
+    });
+});
+
+//create a course data
+app.post('/courses',(req,res)=>{
+    let courseName = req.body.courseName;
+    let qr = `insert into courses(courseName) values('${courseName}')`;
+    db.query(qr,(err,result)=> {
+        if(err){
+            console.log(err);
+        }
+        res.send({
+            message: 'Course created'
+        })
+    });
+});
+
+//get all Results data
+app.get('/results',(req,res)=>{
+    let qr = `select * from results`;
+    db.query(qr,(err,result)=>{
+        if(err){
+            console.log(err,'errs');
+        }
+        if(result.length>0){
+            res.send({
+                message: 'All results data',
+                data:result
+            });
+        }
+    });
+});
+
+//create a result data
+app.post('/results',(req,res)=>{
+    let course = req.body.course;
+    let student = req.body.student;
+    let score = req.body.score;
+    let qr = `insert into results(course, student, score) values('${course}','${student}','${score}')`;
+    db.query(qr,(err,result)=> {
+        if(err){
+            console.log(err);
+        }
+        res.send({
+            message: 'results created'
         })
     });
 });

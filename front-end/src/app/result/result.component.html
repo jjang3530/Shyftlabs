@@ -1,0 +1,66 @@
+<div class="container mt-5">
+    <h3>Results Page</h3>
+    <!-- show errormsg -->
+    <div *ngIf="errormsg" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{errormsg}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="msgHandler()"></button>
+    </div>
+    <div *ngIf="successmsg" class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{successmsg}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="msgHandler()"></button>
+    </div>
+
+    <form [formGroup]="userForm">
+        <div class="col-lg-4 mt-2">
+            <select name='course' class="form-control" formControlName="course">
+                <option value="">Please Select Course</option>
+                <option *ngFor="let course of courseData" [value]="course">
+                {{course}}
+                </option>    
+            </select>
+        </div>
+
+        <div class="col-lg-4 mt-2">
+            <select name='student' class="form-control" formControlName="student">
+                <option value="">Please Select Student</option>
+                <option *ngFor="let student of studentData" [value]="student.firstName + ' ' + student.familyName">
+                {{student.firstName}} {{student.familyName}}
+                </option>    
+            </select>
+        </div>
+
+        <div class="col-lg-4 mt-2">
+            <select name='score' class="form-control" formControlName="score">
+                <option value="">Please Select Score</option>
+                <option *ngFor="let score of scoreData" [value]="score">
+                {{score}}
+                </option>    
+            </select>
+        </div>
+
+        <div class="col-lg-4 mt-2">
+            <button class="btn btn-primary btn-lg" (click)="resulSubmit()">Create</button>
+        </div>
+    </form>
+</div>
+
+<div class="container mt-5">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Course</th>
+            <th scope="col">Student</th>
+            <th scope="col">Score</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor = 'let data of readData'>
+            <th scope="row">{{data.id}}</th>
+            <td>{{data.course}}</td>
+            <td>{{data.student}}</td>
+            <td>{{data.score}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
